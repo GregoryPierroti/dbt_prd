@@ -1,0 +1,39 @@
+name: dbt_prd
+
+version: '1.0.0'
+
+profile: projeto_prd
+
+
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         
+  - "target"
+  - "dbt_packages"
+
+models:
+  projeto_prd:
+    02 - staging:
+      schema: stg
+      +materialized: table
+      tags: '[staging]'
+    03 - intermediate:
+      schema: int
+      +materialized: ephemeral
+      tags: '[intermediate]'
+    04 - marts: 
+      schema: marts
+      +materialized: table
+      tags: '[marts]'
+
+seeds:
+  projeto_prd:
+    schema: raw
+    tags: '[seeds]'
+

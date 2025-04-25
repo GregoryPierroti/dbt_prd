@@ -1,0 +1,19 @@
+projeto_prd:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: "{{ env_var('GCP_DEV_PROJECT') }}"
+      dataset: "{{ env_var('GCP_DEV_DATASET') }}"
+      threads: 4
+      keyfile: "{{ env_var('GCP_DEV_KEYFILE') }}"
+      timeout_seconds: 300
+    prd:
+      type: bigquery
+      method: service-account
+      project: "{{ env_var('GCP_PRD_PROJECT') }}"
+      dataset: "{{ env_var('GCP_PRD_DATASET') }}"
+      threads: 4
+      keyfile: "{{ env_var('GCP_PRD_KEYFILE') }}"
+      timeout_seconds: 300
